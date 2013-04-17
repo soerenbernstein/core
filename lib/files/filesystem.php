@@ -265,7 +265,7 @@ class Filesystem {
 	 * @param string $user
 	 */
 	public static function initMountPoints($user = '') {
-		if ($user == '') {
+		if ($user === '') {
 			$user = \OC_User::getUser();
 		}
 		$parser = new \OC\ArrayParser();
@@ -426,7 +426,7 @@ class Filesystem {
 	static public function getLocalPath($path) {
 		$datadir = \OC_User::getHome(\OC_User::getUser()) . '/files';
 		$newpath = $path;
-		if (strncmp($newpath, $datadir, strlen($datadir)) == 0) {
+		if (strncmp($newpath, $datadir, strlen($datadir)) === 0) {
 			$newpath = substr($path, strlen($datadir));
 		}
 		return $newpath;
@@ -636,7 +636,7 @@ class Filesystem {
 	 * @return string
 	 */
 	public static function normalizePath($path, $stripTrailingSlash = true) {
-		if ($path == '') {
+		if ($path === '') {
 			return '/';
 		}
 		//no windows style slashes

@@ -115,7 +115,7 @@ class Mapper
 	}
 
 	private function stripLast($path) {
-		if (substr($path, -1) == '/') {
+		if (substr($path, -1) === '/') {
 			$path = substr_replace($path, '', -1);
 		}
 		return $path;

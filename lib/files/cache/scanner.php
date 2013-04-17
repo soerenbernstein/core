@@ -45,7 +45,7 @@ class Scanner {
 		if (!$this->storage->isReadable($path)) return null; //cant read, nothing we can do
 		$data['mimetype'] = $this->storage->getMimeType($path);
 		$data['mtime'] = $this->storage->filemtime($path);
-		if ($data['mimetype'] == 'httpd/unix-directory') {
+		if ($data['mimetype'] === 'httpd/unix-directory') {
 			$data['size'] = -1; //unknown
 		} else {
 			$data['size'] = $this->storage->filesize($path);

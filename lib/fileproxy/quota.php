@@ -39,10 +39,10 @@ class OC_FileProxy_Quota extends OC_FileProxy{
 			return $this->userQuota[$user];
 		}
 		$userQuota=OC_Preferences::getValue($user, 'files', 'quota', 'default');
-		if($userQuota=='default') {
+		if($userQuota === 'default') {
 			$userQuota=OC_AppConfig::getValue('files', 'default_quota', 'none');
 		}
-		if($userQuota=='none') {
+		if($userQuota === 'none') {
 			$this->userQuota[$user]=-1;
 		}else{
 			$this->userQuota[$user]=OC_Helper::computerFileSize($userQuota);
@@ -68,7 +68,7 @@ class OC_FileProxy_Quota extends OC_FileProxy{
 		}
 
 		$totalSpace = $this->getQuota($owner);
-		if($totalSpace == -1) {
+		if($totalSpace === -1) {
 			return -1;
 		}
 

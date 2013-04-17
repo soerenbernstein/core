@@ -265,7 +265,7 @@ if (\OC_Util::runningOnWindows()) {
 		protected function searchInDir($query, $dir = '') {
 			$files = array();
 			foreach (scandir($this->datadir . $dir) as $item) {
-				if ($item == '.' || $item == '..') continue;
+				if ($item === '.' || $item === '..') continue;
 				if (strstr(strtolower($item), strtolower($query)) !== false) {
 					$files[] = $dir . '/' . $item;
 				}

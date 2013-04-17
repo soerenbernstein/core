@@ -101,7 +101,7 @@ class OC_L10N{
 		$lang = $this->lang;
 		$this->app = true;
 		// Find the right language
-		if(is_null($lang) || $lang == '') {
+		if(is_null($lang) || $lang === '') {
 			$lang = self::findLanguage($app);
 		}
 
@@ -233,13 +233,13 @@ class OC_L10N{
 				if($data instanceof DateTime) return $data->format($this->localizations[$type]);
 				elseif(is_string($data)) $data = strtotime($data);
 				$locales = array(self::findLanguage());
-				if (strlen($locales[0]) == 2) {
+				if (strlen($locales[0]) === 2) {
 					$locales[] = $locales[0].'_'.strtoupper($locales[0]);
 				}
 				setlocale(LC_TIME, $locales);
 				$format = $this->localizations[$type];
 				// Check for Windows to find and replace the %e modifier correctly
-				if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+				if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 					$format = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $format);
 				}
 				return strftime($format, $data);
@@ -279,7 +279,7 @@ class OC_L10N{
 	 * If nothing works it returns 'en'
 	 */
 	public static function findLanguage($app = null) {
-		if(!is_array($app) && self::$language != '') {
+		if(!is_array($app) && self::$language !== '') {
 			return self::$language;
 		}
 
@@ -316,7 +316,7 @@ class OC_L10N{
 					return $available[$key];
 				}
 				foreach($available as $l) {
-					if ( $temp[0] == substr($l, 0, 2) ) {
+					if ( $temp[0] === substr($l, 0, 2) ) {
 						if (is_null($app)) {
 							self::$language = $l;
 						}
@@ -371,7 +371,7 @@ class OC_L10N{
 	}
 
 	public static function languageExists($app, $lang) {
-		if ($lang == 'en') {//english is always available
+		if ($lang === 'en') {//english is always available
 			return true;
 		}
 		$dir = self::findI18nDir($app);
