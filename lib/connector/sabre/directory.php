@@ -73,7 +73,7 @@ class OC_Connector_Sabre_Directory extends OC_Connector_Sabre_Node implements Sa
 				if (isset($_SERVER['CONTENT_LENGTH'])) {
 					$expected = $_SERVER['CONTENT_LENGTH'];
 					$actual = \OC\Files\Filesystem::filesize($partpath);
-					if ($actual != $expected) {
+					if ($actual !== $expected) {
 						\OC\Files\Filesystem::unlink($partpath);
 						throw new Sabre_DAV_Exception_BadRequest(
 								'expected filesize ' . $expected . ' got ' . $actual);
@@ -131,7 +131,7 @@ class OC_Connector_Sabre_Directory extends OC_Connector_Sabre_Node implements Sa
 			throw new Sabre_DAV_Exception_NotFound('File with name ' . $path . ' could not be located');
 		}
 
-		if ($info['mimetype'] == 'httpd/unix-directory') {
+		if ($info['mimetype'] === 'httpd/unix-directory') {
 			$node = new OC_Connector_Sabre_Directory($path);
 		} else {
 			$node = new OC_Connector_Sabre_File($path);
@@ -206,7 +206,7 @@ class OC_Connector_Sabre_Directory extends OC_Connector_Sabre_Node implements Sa
 	 */
 	public function delete() {
 
-		if ($this->path != "/Shared") {
+		if ($this->path !== "/Shared") {
 			foreach($this->getChildren() as $child) $child->delete();
 			\OC\Files\Filesystem::rmdir($this->path);
 		}
