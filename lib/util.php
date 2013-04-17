@@ -23,7 +23,7 @@ class OC_Util {
 		}
 
 		// If we are not forced to load a specific user we load the one that is logged in
-		if( $user == "" && OC_User::isLoggedIn()) {
+		if( $user === "" && OC_User::isLoggedIn()) {
 			$user = OC_User::getUser();
 		}
 
@@ -35,7 +35,7 @@ class OC_Util {
 		// the filesystem will finish when $user is not empty,
 		// mark fs setup here to avoid doing the setup from loading
 		// OC_Filesystem
-		if ($user != '') {
+		if ($user !== '') {
 			self::$fsSetup=true;
 		}
 
@@ -47,7 +47,7 @@ class OC_Util {
 			self::$rootMounted=true;
 		}
 
-		if( $user != "" ) { //if we aren't logged in, there is no use to set up the filesystem
+		if( $user !== "" ) { //if we aren't logged in, there is no use to set up the filesystem
 			$user_dir = '/'.$user.'/files';
 			$user_root = OC_User::getHome($user);
 			$userdirectory = $user_root . '/files';
@@ -284,10 +284,10 @@ class OC_Util {
 				'hint'=>'Please ask your server administrator to install the module.');
 			$web_server_restart=true;
 		}
-		if (((strtolower(@ini_get('safe_mode')) == 'on')
-			|| (strtolower(@ini_get('safe_mode')) == 'yes')
-			|| (strtolower(@ini_get('safe_mode')) == 'true')
-			|| (ini_get("safe_mode") == 1 ))) {
+		if (((strtolower(@ini_get('safe_mode')) === 'on')
+			|| (strtolower(@ini_get('safe_mode')) === 'yes')
+			|| (strtolower(@ini_get('safe_mode')) === 'true')
+			|| (ini_get("safe_mode") === 1 ))) {
 			$errors[]=array('error'=>'PHP Safe Mode is enabled. ownCloud requires that it is disabled to work properly.',
 				'hint'=>'PHP Safe Mode is a deprecated and mostly useless setting that should be disabled. Please ask your server administrator to disable it in php.ini or in your webserver config.');
 			$web_server_restart=true;
@@ -318,11 +318,11 @@ class OC_Util {
 			$permissionsModHint = 'Please change the permissions to 0770 so that the directory'
 				.' cannot be listed by other users.';
 			$prems = substr(decoct(@fileperms($dataDirectory)), -3);
-			if (substr($prems, -1) != '0') {
+			if (substr($prems, -1) !== '0') {
 				OC_Helper::chmodr($dataDirectory, 0770);
 				clearstatcache();
 				$prems = substr(decoct(@fileperms($dataDirectory)), -3);
-				if (substr($prems, 2, 1) != '0') {
+				if (substr($prems, 2, 1) !== '0') {
 					$errors[] = array('error' => 'Data directory ('.$dataDirectory.') is readable for other users',
 						'hint' => $permissionsModHint);
 				}
@@ -627,7 +627,7 @@ class OC_Util {
 		}
 
 		$result = setlocale(LC_ALL, 'en_US.UTF-8', 'en_US.UTF8');
-		if($result == false) {
+		if($result === false) {
 			return false;
 		}
 		return true;
@@ -698,7 +698,7 @@ class OC_Util {
 		// Try to use openssl_random_pseudo_bytes
 		if(function_exists('openssl_random_pseudo_bytes')) {
 			$pseudo_byte = bin2hex(openssl_random_pseudo_bytes($length, $strong));
-			if($strong == true) {
+			if($strong === true) {
 				return substr($pseudo_byte, 0, $length); // Truncate it to match the length
 			}
 		}
@@ -732,7 +732,7 @@ class OC_Util {
 		// Check openssl_random_pseudo_bytes
 		if(function_exists('openssl_random_pseudo_bytes')) {
 			openssl_random_pseudo_bytes(1, $strong);
-			if($strong == true) {
+			if($strong === true) {
 				return true;
 			}
 		}

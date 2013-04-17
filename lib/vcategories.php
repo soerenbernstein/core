@@ -125,7 +125,7 @@ class OC_VCategories {
 				OC_Log::write('core', __METHOD__. 'DB error: ' . OC_DB::getErrorMessage($result), OC_Log::ERROR);
 				return false;
 			}
-			return ($result->numRows() == 0);
+			return ($result->numRows() === 0);
 		} catch(Exception $e) {
 			OCP\Util::writeLog('core', __METHOD__.', exception: '.$e->getMessage(),
 				OCP\Util::ERROR);
@@ -144,7 +144,7 @@ class OC_VCategories {
 		}
 		$categories = array_values($this->categories);
 		uasort($categories, 'strnatcasecmp');
-		if($format == self::FORMAT_MAP) {
+		if($format === self::FORMAT_MAP) {
 			$catmap = array();
 			foreach($categories as $category) {
 				if($category !== self::CATEGORY_FAVORITE) {
@@ -371,7 +371,7 @@ class OC_VCategories {
 		$newones = array();
 		foreach($names as $name) {
 			if(($this->in_arrayi(
-				$name, $this->categories) == false) && $name != '') {
+				$name, $this->categories) === false) && $name !== '') {
 				$newones[] = $name;
 			}
 			if(!is_null($id) ) {
