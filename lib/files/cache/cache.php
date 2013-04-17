@@ -99,7 +99,7 @@ class Cache {
 	 * @return array
 	 */
 	public function get($file) {
-		if (is_string($file) or $file === '') {
+		if (is_string($file) or $file == '') {
 			// normalize file
 			$file = $this->normalize($file);
 
