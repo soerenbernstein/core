@@ -1043,7 +1043,7 @@ class Share {
 			$collectionItems = array();
 			foreach ($items as &$row) {
 				// Return only the item instead of a 2-dimensional array
-				if ($limit === 1 && $row[$column] === $item && ($row['item_type'] === $itemType || $itemType === 'file')) {
+				if ($limit === 1 && $row[$column] == $item && ($row['item_type'] === $itemType || $itemType === 'file')) {
 					if ($format === self::FORMAT_NONE) {
 						return $row;
 					} else {
@@ -1084,7 +1084,7 @@ class Share {
 										\OC\Files\Filesystem::normalizePath($child['file_path']);
 								}
 								if (isset($item)) {
-									if ($childItem[$column] === $item) {
+									if ($childItem[$column] == $item) {
 										// Return only the item instead of a 2-dimensional array
 										if ($limit === 1) {
 											if ($format === self::FORMAT_NONE) {
